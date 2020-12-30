@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,8 +43,18 @@ public class CustomAdapter  extends BaseExpandableListAdapter {
         if(convertView ==null)
         {
             LayoutInflater grouplnfla= (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = grouplnfla.inflate(R.layout.parent_listview.parent,false);
 
         }
+
+        TextView parentText = (TextView)convertView.findViewById(R.id.parenttext);
+        parentText.setText(getGroup(grroupPosition));
+        return convertView;
+    }
+
+    public ChildListData getchild(int groupPosition,int childPosition){
+        return  this.mChildHashMap.get(this.mParentList.get((groupPosition)).get(childPosition);
+
 
     }
 
@@ -75,10 +86,6 @@ public class CustomAdapter  extends BaseExpandableListAdapter {
         return false;
     }
 
-    @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        return null;
-    }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
